@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SnapLens
 
-## Getting Started
+SnapLens is an interactive JavaScript project built with Next.js that allows users to upload and manipulate images by zooming in and out, as well as creating tags on specific areas of the image. The project provides an intuitive interface for users to explore and annotate images with ease.
 
-First, run the development server:
+## Features
+
+- Image Upload: Users can upload images from their local machine.
+- Zoom Functionality: Users can zoom in or zoom out on the uploaded image to view details or get an overview.
+- Tag Creation: Users can create tags on specific areas of the image using their mouse.
+- Visual Highlighting: When the user releases the mouse, the application highlights the tagged area and creates a box on the screen where the user dragged the mouse.
+
+### Installation
+
+Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+git clone https://github.com/your-username/snaplens.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Navigate the project
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```
+cd snaplens
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Install the dependencies
 
-## Learn More
+```
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+### Start the development server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Open your web browser and visit http://localhost:3000 to access SnapLens.
 
-## Deploy on Vercel
+## Usage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+1. Upon opening SnapLens in a web browser, you will see an interface with an "Upload Image" button.
+2. Click on the "Upload Image" button to select an image file from your local machine.
+3. After uploading the image, it will be displayed on the screen.
+4. To zoom in or out, use the provided zoom controls or keyboard shortcuts.
+5. To create a tag, click and drag the mouse on the image to define the area of interest.
+6. Release the mouse to highlight and create a box around the tagged area.
+7. Repeat the process to create additional tags as needed.
+8. To remove a tag, simply click on the tag box, and it will be deleted.
