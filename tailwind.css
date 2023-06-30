@@ -19,11 +19,18 @@ body {
   background-color: #36384d;
 }
 
+/* Scrollbar */
+
 /* Card */
 .card {
   @apply bg-white p-6 rounded-xl;
 }
 
 .main-layout {
-  @apply max-w-[1200px] mx-auto;
+  @apply max-w-[1100px] mx-auto;
+}
+
+/* heading */
+h1 {
+  @apply text-3xl font-bold;
 }

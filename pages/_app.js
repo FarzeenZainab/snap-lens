@@ -12,7 +12,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       {/* default app layout */}
-      <main className={`${agdasimaRegular.className} font-sans`}>
+      <main className={`${agdasimaRegular.variable} font-sans`}>
         <Component {...pageProps} />
       </main>
     </>
