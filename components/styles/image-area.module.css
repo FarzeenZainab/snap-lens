@@ -2,3 +2,6 @@
   /* we have to make the height responsive to fix the height issue */
   @apply h-[500px] overflow-y-auto -mr-6 pr-6;
 }
+.img {
+  @apply max-w-none;
+}

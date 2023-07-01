@@ -6,7 +6,7 @@ function Button({ label, className, onClick, iconClass }) {
     <>
       <button className={`${className || ""} ${styles.btn}`} onClick={onClick}>
         {iconClass && <i className={`${styles.icon} ${iconClass}`} />}
-        <span class="label">{label}</span>
+        <span className="label">{label}</span>
       </button>
     </>
   );
