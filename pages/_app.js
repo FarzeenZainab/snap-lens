@@ -1,6 +1,7 @@
 import localFont from "@next/font/local";
 
 import "../tailwind.css";
+import "../components/styles/icons.css";
 
 // fonts
 const agdasimaRegular = localFont({
