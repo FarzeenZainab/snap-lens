@@ -9,17 +9,34 @@ Research:
 Zoom-in and Zoom-out
 1. How to zoom-in the image on button click?
 Two ways of zooming in and out the image:
-    - Change the width and height of the image (in react we have to update the state of the element)
+    - Change the width and height of the image (in react I have to update the state of the element)
     - Use Transform:scale()
 
 Zooming in and out using width and height property:
 Important notes:
-If we use (image.style.width), JS will set it as inline styles which is not a good practice. The second issue with this approch is that we only get the value of the styles that we ourselves sets manually on the element. For example: we dset image.style.width and store the value in a variable. But, if we want to get or store image.style.height we can not do that.The reason is that we never set the height of the element using image.style.height. ele.style.cssProperty only works for inline styles.  We will not be able to access the value of any styles coming from a class, from a stylesheet or element's own style. 
+If I use (image.style.width), JS will set it as inline styles which is not a good practice. The second issue with this approch is that I only get the value of the styles that I ourselves sets manually on the element. For example: I dset image.style.width and store the value in a variable. But, if I want to get or store image.style.height I can not do that.The reason is that I never set the height of the element using image.style.height. ele.style.cssProperty only works for inline styles.  I will not be able to access the value of any styles coming from a class, from a stylesheet or element's own style. 
 
-We have to add the zoom factor to the current width and height of the image and we can do it by following method:
+I have to add the zoom factor to the current width and height of the image and I can do it by following method:
 - use getComputedStyle(element.property) function
-- In react to change the width and height of the element we have to update the state so the DOM is manipulated and we can see the changes
+- In react to change the width and height of the element I have to update the state so the DOM is manipulated and I can see the changes
 
 
+2. How to create a selection on an image, which HTML tag to use?
+- Let's first create a simple static box on the image, I will make it dynamic later
+- Create two components:
+    1. TagList: renders TagItem for each tag in the provided tags' array
+    2. TagItem: renders a tag created by the user
 
-1. How to create a selection on an image, which HTML tag to use?
+- Tags Array Structure:
+    [ 
+        {
+            id: '',
+            xPosition: '',
+            yPosition: '',
+            width: '',
+            height: ''
+        }
+    ]
+
+- What do we need to show a static box on the specific area of the screen?
+https://www.geeksforgeeks.org/how-to-position-a-div-at-specific-coordinates/

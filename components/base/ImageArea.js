@@ -5,12 +5,26 @@ import React, {
   useImperativeHandle,
 } from "react";
 import { useRef } from "react";
+import TagList from "./TagList";
 import styles from "../styles/image-area.module.css";
 
 const ImageArea = forwardRef(function ImageArea(props, ref) {
-  const imgContainer = useRef();
   let container;
+
+  // image container
+  const imgContainer = useRef();
   const [width, setWidth] = useState();
+
+  // tags' list
+  const [tags, setTags] = useState([
+    {
+      id: 1,
+      xPosition: 108,
+      yPosition: 252,
+      width: 100,
+      height: 300,
+    },
+  ]);
 
   // set the img width equal to the width of container on the first render
   useEffect(() => {
@@ -25,17 +39,19 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
     });
   };
 
-  useImperativeHandle(ref, () => ({
-    zoomIn: zoomIn,
-    zoomOut: zoomOut,
-  }));
-
   // Zoom out
   const zoomOut = () => {
     setWidth((curWidth) => {
       return Number.parseFloat(curWidth) - 100;
     });
   };
+
+  // using useImperativeHandle to change the behavior of the component when using forwardRef.
+  // updating the internal state from parent component
+  useImperativeHandle(ref, () => ({
+    zoomIn: zoomIn,
+    zoomOut: zoomOut,
+  }));
 
   return (
     <>
@@ -47,6 +63,7 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
           className={`${styles.img}`}
           width={width}
         />
+        <TagList tagList={tags} />
       </div>
     </>
   );
