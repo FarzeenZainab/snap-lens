@@ -55,7 +55,7 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
   }));
 
   return (
-    <>
+    <div>
       <div className={`${styles["image-area-container"]}`} ref={imgContainer}>
         <img
           src="/images/floor-plan.png"
@@ -66,7 +66,7 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
         />
         <TagList tagList={tags} />
       </div>
-    </>
+    </div>
   );
 });
 

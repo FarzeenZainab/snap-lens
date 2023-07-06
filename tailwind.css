@@ -33,11 +33,6 @@ body {
   @apply bg-slate-300 rounded-full;
 }
 
-/* Card */
-.card {
-  @apply bg-white p-6 rounded-xl;
-}
-
 .main-layout {
   @apply max-w-[1100px] mx-auto;
 }

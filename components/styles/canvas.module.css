@@ -1,0 +1,3 @@
+.canvas {
+  @apply w-full h-[500px] absolute z-[11];
+}

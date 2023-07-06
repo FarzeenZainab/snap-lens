@@ -14,7 +14,7 @@ Two ways of zooming in and out the image:
 
 Zooming in and out using width and height property:
 Important notes:
-If I use (image.style.width), JS will set it as inline styles which is not a good practice. The second issue with this approch is that I only get the value of the styles that I ourselves sets manually on the element. For example: I dset image.style.width and store the value in a variable. But, if I want to get or store image.style.height I can not do that.The reason is that I never set the height of the element using image.style.height. ele.style.cssProperty only works for inline styles.  I will not be able to access the value of any styles coming from a class, from a stylesheet or element's own style. 
+If I use (image.style.width), JS will set it as inline styles which is not a good practice. The second issue with this approch is that I only get the value of the styles that I myself sets manually on the element. For example: I set image.style.width and store the value in a variable. But, if I want to get or store image.style.height I can not do that. The reason is that I never set the height of the element using image.style.height. ele.style.cssProperty only works for inline styles. I will not be able to access the value of any styles coming from a class, from a stylesheet or element's own style. 
 
 I have to add the zoom factor to the current width and height of the image and I can do it by following method:
 - use getComputedStyle(element.property) function
@@ -31,6 +31,7 @@ I have to add the zoom factor to the current width and height of the image and I
     [ 
         {
             id: '',
+            title: '',
             xPosition: '',
             yPosition: '',
             width: '',
@@ -40,3 +41,7 @@ I have to add the zoom factor to the current width and height of the image and I
 
 - What do we need to show a static box on the specific area of the screen?
 https://www.geeksforgeeks.org/how-to-position-a-div-at-specific-coordinates/
+
+- Working with canvas:
+https://www.programonaut.com/how-to-draw-on-an-html-canvas-with-a-mouse/
+https://medium.com/web-dev-survey-from-kyoto/how-to-use-html-canvas-with-react-hooks-web-dev-survey-from-kyoto-e633812023b1

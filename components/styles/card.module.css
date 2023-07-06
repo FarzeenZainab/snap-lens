@@ -1,0 +1,4 @@
+/* Card */
+.card {
+  @apply relative bg-white p-6 rounded-xl;
+}

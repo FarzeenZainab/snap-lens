@@ -7,6 +7,7 @@ function TagList({ tagList }) {
       {tagList.map((tag) => {
         return (
           <TagItem
+            key={tag.id}
             id={tag.id}
             title={tag.title}
             width={tag.width}
