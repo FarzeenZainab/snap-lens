@@ -2,6 +2,10 @@
   @apply text-white px-8 py-2 text-xl m-1 rounded-md border-2 flex items-center border-green-500 hover:bg-green-500 hover:transition;
 }
 
+.btn.lg {
+  @apply bg-red-900;
+}
+
 .btn .icon {
   @apply mr-4;
 }

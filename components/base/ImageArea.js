@@ -19,6 +19,7 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
   const [tags, setTags] = useState([
     {
       id: 1,
+      title: "Garage Area Size (23-5 x 23-5)",
       xPosition: 108,
       yPosition: 252,
       width: 100,

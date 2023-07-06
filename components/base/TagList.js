@@ -5,7 +5,16 @@ function TagList({ tagList }) {
   return (
     <>
       {tagList.map((tag) => {
-        return <TagItem id={tag.id} />;
+        return (
+          <TagItem
+            id={tag.id}
+            title={tag.title}
+            width={tag.width}
+            height={tag.height}
+            xPosition={tag.xPosition}
+            yPosition={tag.yPosition}
+          />
+        );
       })}
     </>
   );

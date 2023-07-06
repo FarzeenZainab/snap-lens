@@ -22,6 +22,7 @@ export default function Index() {
           <Button
             label="Zoom-out"
             iconClass="icon-zoom-out"
+            className="lg"
             onClick={zoomOut}
           />
         </div>
