@@ -1,9 +1,8 @@
 import Card from "../components/base/Card";
 import ImageArea from "../components/base/ImageArea";
 import Button from "../components/base/Button";
-import { useRef } from "react";
 
-import styles from "../components/styles/canvas.module.css";
+import { useRef } from "react";
 
 export default function Index() {
   const imgArea = useRef();
@@ -14,10 +13,6 @@ export default function Index() {
 
   const zoomOut = () => {
     imgArea.current.zoomOut();
-  };
-
-  const drawTag = () => {
-    console.log("start drawing");
   };
 
   return (
@@ -33,11 +28,6 @@ export default function Index() {
           />
         </div>
         <Card>
-          <canvas
-            id="canvas"
-            className={`${styles.canvas}`}
-            onClick={drawTag}
-          ></canvas>
           <ImageArea ref={imgArea} />
         </Card>
       </div>

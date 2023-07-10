@@ -2,10 +2,13 @@ import React, {
   forwardRef,
   useEffect,
   useState,
+  useRef,
   useImperativeHandle,
 } from "react";
-import { useRef } from "react";
+
 import TagList from "./TagList";
+import Canvas from "../base/Canvas";
+
 import styles from "../styles/image-area.module.css";
 
 const ImageArea = forwardRef(function ImageArea(props, ref) {
@@ -26,6 +29,10 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
       height: 300,
     },
   ]);
+
+  const image = useRef();
+  let imgHeight = getComputedStyle(image.current).height;
+  let imgWidth = getComputedStyle(image.current).width;
 
   // set the img width equal to the width of container on the first render
   useEffect(() => {
@@ -55,17 +62,17 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
   }));
 
   return (
-    <div>
-      <div className={`${styles["image-area-container"]}`} ref={imgContainer}>
-        <img
-          src="/images/floor-plan.png"
-          alt="uploaded image will be shown here"
-          draggable="false"
-          className={`${styles.img}`}
-          width={width}
-        />
-        <TagList tagList={tags} />
-      </div>
+    <div className={`${styles["image-area-container"]}`} ref={imgContainer}>
+      <Canvas height={imgHeight} />
+      <img
+        ref={image}
+        src="/images/floor-plan.png"
+        alt="uploaded image will be shown here"
+        draggable="false"
+        className={`${styles.img}`}
+        width={width}
+      />
+      <TagList tagList={tags} />
     </div>
   );
 });
