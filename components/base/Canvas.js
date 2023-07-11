@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, forwardRef } from "react";
 import styles from "../styles/canvas.module.css";
 
-function Canvas({ height }) {
+function Canvas({ height, width }) {
   const canvas = useRef();
 
   // create Tag
@@ -21,12 +21,16 @@ function Canvas({ height }) {
     <canvas
       ref={canvas}
       id="canvas"
-      className={`${styles.canvas} h-[${height}px]`}
+      style={{
+        width: width,
+        height: height,
+      }}
+      className={`${styles.canvas}`}
     ></canvas>
   );
 }
 
-export default Canvas;
+export default forwardRef(Canvas);
 
 // Psuedo code
 /**

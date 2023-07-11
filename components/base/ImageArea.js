@@ -12,11 +12,15 @@ import Canvas from "../base/Canvas";
 import styles from "../styles/image-area.module.css";
 
 const ImageArea = forwardRef(function ImageArea(props, ref) {
-  let container;
+  // refs
+  const imgContainerRef = useRef();
+  const imageRef = useRef(); // source element ref
+  const canvasRef = useRef(); // target element ref
 
-  // image container
-  const imgContainer = useRef();
-  const [width, setWidth] = useState();
+  // refs' current
+
+  const [imgWidth, setImgWidth] = useState();
+  const [height, setHeight] = useState();
 
   // tags' list
   const [tags, setTags] = useState([
@@ -30,51 +34,64 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
     },
   ]);
 
-  const image = useRef();
-  let imgHeight = getComputedStyle(image.current).height;
-  let imgWidth = getComputedStyle(image.current).width;
-
-  // set the img width equal to the width of container on the first render
+  // on first render
   useEffect(() => {
-    container = imgContainer.current;
-    setWidth(getComputedStyle(container).width);
+    const container = imgContainerRef.current;
+    const image = imageRef.current;
+    setImgWidth(container.getBoundingClientRect().width);
+    setHeight(image.offsetHeight);
   }, []);
+
+  // when image width changes
+  useEffect(() => {
+    const image = imageRef.current;
+    setHeight(image.offsetHeight);
+  }, [imgWidth]);
 
   // Zoom in
   const zoomIn = () => {
-    setWidth((curWidth) => {
+    setImgWidth((curWidth) => {
       return Number.parseFloat(curWidth) + 100;
     });
   };
 
   // Zoom out
   const zoomOut = () => {
-    setWidth((curWidth) => {
+    setImgWidth((curWidth) => {
       return Number.parseFloat(curWidth) - 100;
     });
   };
 
-  // using useImperativeHandle to change the behavior of the component when using forwardRef.
-  // updating the internal state from parent component
   useImperativeHandle(ref, () => ({
     zoomIn: zoomIn,
     zoomOut: zoomOut,
   }));
 
   return (
-    <div className={`${styles["image-area-container"]}`} ref={imgContainer}>
-      <Canvas height={imgHeight} />
+    <div className={`${styles["image-area-container"]}`} ref={imgContainerRef}>
+      <Canvas height={height} width={imgWidth} ref={canvasRef} />
       <img
-        ref={image}
+        ref={imageRef}
         src="/images/floor-plan.png"
         alt="uploaded image will be shown here"
         draggable="false"
-        className={`${styles.img}`}
-        width={width}
+        className={`${styles.img} p-0 m-0`}
+        width={imgWidth}
       />
-      <TagList tagList={tags} />
+      {/* <TagList tagList={tags} /> */}
     </div>
   );
 });
 
 export default ImageArea;
+
+// set height of the canvas same as image
+/**
+ * What we need is the height of the image
+ * set the height of the canvas equal to the height of the image on first render
+ * on zoom in - update the height of the image & canvas with the new height of the image
+ * on zoom out - update the height of the image & canvas with the new height of the image
+ */
+
+// using useImperativeHandle to change the behavior of the component when using forwardRef.
+// updating the internal state from parent component
