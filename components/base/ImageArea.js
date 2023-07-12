@@ -14,11 +14,12 @@ import styles from "../styles/image-area.module.css";
 const ImageArea = forwardRef(function ImageArea(props, ref) {
   // refs
   const imgContainerRef = useRef();
-  const imageRef = useRef(); // source element ref
-  const canvasRef = useRef(); // target element ref
+  const imageRef = useRef();
+  const canvasRef = useRef();
+  const container = imgContainerRef.current;
+  const image = imageRef.current;
 
-  // refs' current
-
+  // states
   const [imgWidth, setImgWidth] = useState();
   const [height, setHeight] = useState();
 
@@ -36,15 +37,13 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
 
   // on first render
   useEffect(() => {
-    const container = imgContainerRef.current;
     const image = imageRef.current;
     setImgWidth(container.getBoundingClientRect().width);
     setHeight(image.offsetHeight);
   }, []);
 
-  // when image width changes
+  // recalculate height when image width changes
   useEffect(() => {
-    const image = imageRef.current;
     setHeight(image.offsetHeight);
   }, [imgWidth]);
 
@@ -57,11 +56,17 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
 
   // Zoom out
   const zoomOut = () => {
-    setImgWidth((curWidth) => {
-      return Number.parseFloat(curWidth) - 100;
-    });
+    if (image.offsetWidth > container.offsetWidth) {
+      setImgWidth((curWidth) => {
+        return Number.parseFloat(curWidth) - 100;
+      });
+    } else {
+      setImgWidth(container.offsetWidth);
+    }
   };
 
+  // using useImperativeHandle to change the behavior of the component when using forwardRef.
+  // updating the internal state from parent component
   useImperativeHandle(ref, () => ({
     zoomIn: zoomIn,
     zoomOut: zoomOut,
@@ -77,6 +82,9 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
         draggable="false"
         className={`${styles.img} p-0 m-0`}
         width={imgWidth}
+        onLoad={() => {
+          setHeight(imageRef.current.offsetHeight);
+        }}
       />
       {/* <TagList tagList={tags} /> */}
     </div>
@@ -87,11 +95,7 @@ export default ImageArea;
 
 // set height of the canvas same as image
 /**
- * What we need is the height of the image
+ * we need the height of the image
  * set the height of the canvas equal to the height of the image on first render
- * on zoom in - update the height of the image & canvas with the new height of the image
- * on zoom out - update the height of the image & canvas with the new height of the image
+ * add 2nd useEffect with the dependency of width, that recalculates the height when width changes
  */
-
-// using useImperativeHandle to change the behavior of the component when using forwardRef.
-// updating the internal state from parent component

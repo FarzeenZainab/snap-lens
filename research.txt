@@ -21,7 +21,7 @@ I have to add the zoom factor to the current width and height of the image and I
 - In react to change the width and height of the element I have to update the state so the DOM is manipulated and I can see the changes
 - upadat the height and width of the canvas as well so it covers the full image
 
-- How to update the width and height of an element same as other element in in react?
+- use offsetHeight for images to get the height. offsetHeight ensures that we get the accurate rendered height of the image
 
 2. How to create a selection on an image, which HTML tag to use?
 - Let's first create a simple static box on the image, I will make it dynamic later
