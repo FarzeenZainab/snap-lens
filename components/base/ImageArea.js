@@ -37,6 +37,7 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
 
   // on first render
   useEffect(() => {
+    const container = imgContainerRef.current;
     const image = imageRef.current;
     setImgWidth(container.getBoundingClientRect().width);
     setHeight(image.offsetHeight);
@@ -44,6 +45,7 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
 
   // recalculate height when image width changes
   useEffect(() => {
+    const image = imageRef.current;
     setHeight(image.offsetHeight);
   }, [imgWidth]);
 

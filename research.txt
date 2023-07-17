@@ -51,3 +51,28 @@ https://medium.com/web-dev-survey-from-kyoto/how-to-use-html-canvas-with-react-h
 https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial
 
 https://stackoverflow.com/questions/74376189/how-to-show-a-rectangle-while-drawing-it-on-mousemove-html-canvas
+
+4. Making a selection with mouse
+- issue: rect() not create rectangle as per defined dimension
+    <canvas
+      ref={canvas}
+      id="canvas"
+      style={{
+        width: width,
+        height: height,
+      }} 
+      className={`${styles.canvas}`}
+      onMouseDown={createTag}
+      onMouseUp={saveTag}
+    ></canvas> -> wrong way of defining width and height of the canvas (may result destortion)
+
+    RIGHT WAY:
+    <canvas
+      ref={canvas}
+      id="canvas"
+      width={width}
+      height={height}
+      className={`${styles.canvas}`}
+      onMouseDown={createTag}
+      onMouseUp={saveTag}
+    ></canvas>

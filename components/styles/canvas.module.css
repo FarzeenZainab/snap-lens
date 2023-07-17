@@ -1,3 +1,4 @@
 .canvas {
-  @apply absolute z-[11] top-0 left-0 bg-fuchsia-500 opacity-10;
+  aspect-ratio: 1/1;
+  @apply absolute z-[11] top-0 left-0;
 }

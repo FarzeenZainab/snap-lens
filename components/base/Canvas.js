@@ -1,36 +1,43 @@
-import React, { useRef, forwardRef } from "react";
+import React, { useRef, forwardRef, useEffect, useState } from "react";
 import styles from "../styles/canvas.module.css";
 
-function Canvas({ height, width }) {
+const Canvas = forwardRef(function ({ height, width }, ref) {
   const canvas = useRef();
+  const [context, setContext] = useState(null);
+  const [isDrawing, setIsDrawing] = useState(false);
+
+  // on first render
+  useEffect(() => {
+    setContext(canvas.current.getContext("2d")); // updates the context state so the value is not undefined for functions
+  }, []);
 
   // create Tag
   const createTag = () => {
-    /**
-     * Mouse down event
-     * 1. On mouse down get the x and y position
-     * 2. start selecting area of the image
-     */
+    setIsDrawing(true);
+
+    context.beginPath();
+    context.rect(10, 20, 200, 200); //(x, y, w, h)
+    context.fill();
   };
 
   const saveTag = () => {
-    console.log("save tag");
+    setIsDrawing(false);
   };
 
   return (
     <canvas
       ref={canvas}
       id="canvas"
-      style={{
-        width: width,
-        height: height,
-      }}
+      width={width}
+      height={height}
       className={`${styles.canvas}`}
+      onMouseDown={createTag}
+      onMouseUp={saveTag}
     ></canvas>
   );
-}
+});
 
-export default forwardRef(Canvas);
+export default Canvas;
 
 // Psuedo code
 /**
