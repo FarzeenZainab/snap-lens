@@ -76,3 +76,14 @@ https://stackoverflow.com/questions/74376189/how-to-show-a-rectangle-while-drawi
       onMouseDown={createTag}
       onMouseUp={saveTag}
     ></canvas>
+
+5. Drawing a rectangle on mouse events
+To create a rectangle on mouse event we store the mouse position during mouse down event and draw the rectangle during mouse up event
+
+- How to get the mouse position relative to an element (i.e image-container or maybe our canvas)
+Use getBoundingClientRect() => It is a method available on DOM elements in JS, and it returns the size of an element and its position relative to the viewport (the visible portion of the webpage). It provides information about the element's position, dimensions, and spacing relative to the viewport edges.
+
+It returns the following properties:
+x, y, right, bottom, width, height
+
+visual diagram: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect

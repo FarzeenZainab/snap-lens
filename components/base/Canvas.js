@@ -4,36 +4,48 @@ import styles from "../styles/canvas.module.css";
 const Canvas = forwardRef(function ({ height, width }, ref) {
   const canvas = useRef();
   const [context, setContext] = useState(null);
-  const [isDrawing, setIsDrawing] = useState(false);
 
-  // on first render
-  useEffect(() => {
-    setContext(canvas.current.getContext("2d")); // updates the context state so the value is not undefined for functions
-  }, []);
+  /**
+   * Event we use
+   * Mouse down =>
+   * Mouse up =>
+   * Mouse move => draws a temporary/ondemand rectangle on the canvas when mouse moves on the canvas.
+   */
 
-  // create Tag
-  const createTag = () => {
-    setIsDrawing(true);
+  // get mouse position relative to the canvas
+  const getMousePos = () => {};
 
+  const handleMouseMove = (e) => {
+    // This function will keep triggering when the mouse moves on the canvas
+    // 1. Get mouse x, y position that is relative to the canvas
+    // 2. Create context and begin path using context.beginPath()
+    // 3. Create a new rect
+    // 4. Give a stroke
+
+    const rect = canvas.current.getBoundingClientRect();
+    const start = 
+
+    // calculate the mouse position relative to the canvas (right now mouse position is relative to the viewport)
+    let x = ((e.clientX - rect.left) * width) / rect.width;
+    let y = ((e.clientY - rect.top) * height) / rect.height;
+
+    // create context
     context.beginPath();
-    context.rect(10, 20, 200, 200); //(x, y, w, h)
-    context.fill();
-  };
-
-  const saveTag = () => {
-    setIsDrawing(false);
+    context.rect(x, y);
   };
 
   return (
-    <canvas
-      ref={canvas}
-      id="canvas"
-      width={width}
-      height={height}
-      className={`${styles.canvas}`}
-      onMouseDown={createTag}
-      onMouseUp={saveTag}
-    ></canvas>
+    <>
+      <canvas
+        ref={canvas}
+        id="canvas"
+        width={width}
+        height={height}
+        className={`${styles.canvas}`}
+        onMouseMove={handleMouseMove}
+        onMouseDown={getMousePos}
+      ></canvas>
+    </>
   );
 });
 
