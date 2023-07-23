@@ -4,71 +4,79 @@ import styles from "../styles/canvas.module.css";
 const Canvas = forwardRef(function ({ height, width }, ref) {
   const canvas = useRef();
   const [context, setContext] = useState(null);
+  const [mousePos, setMousePos] = useState({ x: null, y: null });
   const [start, setStart] = useState({ x: null, y: null });
+  const [isActive, setIsActive] = useState(false);
+  const [dimension, setDimension] = useState({ width: "0px", height: "0px" });
+  const [isMirrored, setIsMirrored] = useState({ x: false, y: false });
 
   useEffect(() => {
     setContext(canvas.current.getContext("2d"));
   }, []);
 
-  /**
-   * Event we use
-   * Mouse down =>
-   * Mouse up =>
-   * Mouse move => draws a temporary/ondemand rectangle on the canvas when mouse moves on the canvas.
-   */
-
-  // get mouse position relative to the canvas
-  const getMousePos = (element, e, w, h) => {
-    const rect = element.current.getBoundingClientRect();
-
-    // calculate the mouse position relative to the canvas (right now mouse position is relative to the viewport)
+  const getMousePos = (e) => {
+    const rect = canvas.current.getBoundingClientRect();
     return {
-      x: ((e.clientX - rect.left) * w) / rect.width,
-      y: ((e.clientY - rect.top) * h) / rect.height,
+      x: ((e.clientX - rect.left) * width) / rect.width,
+      y: ((e.clientY - rect.top) * height) / rect.height,
     };
   };
 
-  // start
   const startRect = (e) => {
-    setStart(getMousePos(canvas, e, width, height));
+    setIsActive(true);
+    setStart(getMousePos(e));
+    setMousePos(getMousePos(e));
   };
 
-  // end
   const endRect = (e) => {
     setStart({ x: null, y: null });
+    setDimension({ width: "0px", height: "0px" });
+    setIsActive(false);
   };
 
   const handleMouseMove = (e) => {
-    // This function will keep triggering when the mouse moves on the canvas
-    // 1. Get mouse x, y position that is relative to the canvas
-    // 2. Create context and begin path using context.beginPath()
-    // 3. Create a new rect
-    // 4. Give a stroke
     if (start.x) {
-      let { x, y } = getMousePos(canvas, e, width, height);
-      console.log(x, y);
-      context.beginPath();
-      context.rect(start.x, start.y, x - start.x, y - start.y);
-      context.fill();
+      let { x, y } = getMousePos(e);
+      let width = x - start.x;
+      let height = y - start.y;
+
+      let xMirror = width < 0;
+      let yMirror = height < 0;
+
+      setIsMirrored({ x: xMirror, y: yMirror });
+
+      if (xMirror) {
+        x = start.x + width;
+      }
+
+      if (yMirror) {
+        y = start.y + height;
+      }
+
+      setDimension({ width: Math.abs(width) + "px", height: Math.abs(height) + "px" });
+      setMousePos({ x, y });
     }
   };
 
   return (
     <>
+      {isActive && (
+        <div
+          className={styles.rectangle}
+          style={{
+            position: "absolute",
+            left: isMirrored.x ? start.x - parseInt(dimension.width) : start.x,
+            top: isMirrored.y ? start.y - parseInt(dimension.height) : start.y,
+            width: dimension.width,
+            height: dimension.height,
+            backgroundColor: "rgba(255, 0, 0, 0.5)", // Transparent red
+            transform: `scaleX(${isMirrored.x ? -1 : 1}) scaleY(${isMirrored.y ? -1 : 1})`, // Apply mirroring
+          }}
+        ></div>
+      )}
       <canvas ref={canvas} id="canvas" width={width} height={height} className={`${styles.canvas}`} onMouseMove={handleMouseMove} onMouseDown={startRect} onMouseUp={endRect}></canvas>
     </>
   );
 });
 
 export default Canvas;
-
-// Psuedo code
-/**
- * 1. Create a react component out of <canvas> element
- *
- * 2. Use this component with props and to the image resolution and aspect ratio i.e width & height (will research later)
- *
- * 3. Use ref to to refer to the canvas
- *
- * 4. Create canvas context using useEffect hook
- */
