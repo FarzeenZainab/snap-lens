@@ -4,6 +4,11 @@ import styles from "../styles/canvas.module.css";
 const Canvas = forwardRef(function ({ height, width }, ref) {
   const canvas = useRef();
   const [context, setContext] = useState(null);
+  const [start, setStart] = useState({ x: null, y: null });
+
+  useEffect(() => {
+    setContext(canvas.current.getContext("2d"));
+  }, []);
 
   /**
    * Event we use
@@ -13,7 +18,25 @@ const Canvas = forwardRef(function ({ height, width }, ref) {
    */
 
   // get mouse position relative to the canvas
-  const getMousePos = () => {};
+  const getMousePos = (element, e, w, h) => {
+    const rect = element.current.getBoundingClientRect();
+
+    // calculate the mouse position relative to the canvas (right now mouse position is relative to the viewport)
+    return {
+      x: ((e.clientX - rect.left) * w) / rect.width,
+      y: ((e.clientY - rect.top) * h) / rect.height,
+    };
+  };
+
+  // start
+  const startRect = (e) => {
+    setStart(getMousePos(canvas, e, width, height));
+  };
+
+  // end
+  const endRect = (e) => {
+    setStart({ x: null, y: null });
+  };
 
   const handleMouseMove = (e) => {
     // This function will keep triggering when the mouse moves on the canvas
@@ -21,30 +44,18 @@ const Canvas = forwardRef(function ({ height, width }, ref) {
     // 2. Create context and begin path using context.beginPath()
     // 3. Create a new rect
     // 4. Give a stroke
-
-    const rect = canvas.current.getBoundingClientRect();
-    const start = 
-
-    // calculate the mouse position relative to the canvas (right now mouse position is relative to the viewport)
-    let x = ((e.clientX - rect.left) * width) / rect.width;
-    let y = ((e.clientY - rect.top) * height) / rect.height;
-
-    // create context
-    context.beginPath();
-    context.rect(x, y);
+    if (start.x) {
+      let { x, y } = getMousePos(canvas, e, width, height);
+      console.log(x, y);
+      context.beginPath();
+      context.rect(start.x, start.y, x - start.x, y - start.y);
+      context.fill();
+    }
   };
 
   return (
     <>
-      <canvas
-        ref={canvas}
-        id="canvas"
-        width={width}
-        height={height}
-        className={`${styles.canvas}`}
-        onMouseMove={handleMouseMove}
-        onMouseDown={getMousePos}
-      ></canvas>
+      <canvas ref={canvas} id="canvas" width={width} height={height} className={`${styles.canvas}`} onMouseMove={handleMouseMove} onMouseDown={startRect} onMouseUp={endRect}></canvas>
     </>
   );
 });
