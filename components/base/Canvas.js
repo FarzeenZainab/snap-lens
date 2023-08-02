@@ -5,6 +5,7 @@ import React, {
   useState,
   useCallback,
 } from "react";
+import TagList from "./TagList";
 import styles from "../styles/canvas.module.css";
 
 const Canvas = forwardRef(function ({ height, width }, ref) {
@@ -39,7 +40,13 @@ const Canvas = forwardRef(function ({ height, width }, ref) {
       let { x, y } = getMousePos(canvasRef.current, e);
       setTags([
         ...tags,
-        { x: start.x, y: start.y, width: x - start.x, height: y - start.y },
+        {
+          id: tags.length + 1,
+          x: start.x,
+          y: start.y,
+          width: x - start.x,
+          height: y - start.y,
+        },
       ]);
       setIsDrawing(false);
     }
@@ -55,12 +62,12 @@ const Canvas = forwardRef(function ({ height, width }, ref) {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     // render all tags
-    tags.forEach((tag) => {
-      context.beginPath();
-      context.rect(tag.x, tag.y, tag.width, tag.height);
-      context.strokeStyle = "blue";
-      context.stroke();
-    });
+    // tags.forEach((tag) => {
+    //   context.beginPath();
+    //   context.rect(tag.x, tag.y, tag.width, tag.height);
+    //   context.strokeStyle = "blue";
+    //   context.stroke();
+    // });
   }
 
   // moving action
@@ -74,6 +81,7 @@ const Canvas = forwardRef(function ({ height, width }, ref) {
       context.rect(start.x, start.y, x - start.x, y - start.y);
       context.strokeStyle = "red";
       context.stroke();
+      context.fill();
     }
   };
 
@@ -83,6 +91,8 @@ const Canvas = forwardRef(function ({ height, width }, ref) {
 
   return (
     <>
+      <TagList tagList={tags} />
+
       <canvas
         ref={canvasRef}
         id="canvas"

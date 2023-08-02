@@ -6,7 +6,6 @@ import React, {
   useImperativeHandle,
 } from "react";
 
-import TagList from "./TagList";
 import Canvas from "../base/Canvas";
 
 import styles from "../styles/image-area.module.css";
@@ -88,7 +87,6 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
           setHeight(imageRef.current.offsetHeight);
         }}
       />
-      {/* <TagList tagList={tags} /> */}
     </div>
   );
 });

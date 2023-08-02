@@ -87,3 +87,7 @@ It returns the following properties:
 x, y, right, bottom, width, height
 
 visual diagram: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
+
+5. Adding Name on a tag
+- On Mouse up -> show a input field that will take an input from the user as title of the tag and saves it in the object.
+- The tag is later displayed on the tag

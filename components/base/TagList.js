@@ -12,8 +12,8 @@ function TagList({ tagList }) {
             title={tag.title}
             width={tag.width}
             height={tag.height}
-            xPosition={tag.xPosition}
-            yPosition={tag.yPosition}
+            xPosition={tag.x}
+            yPosition={tag.y}
           />
         );
       })}
