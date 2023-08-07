@@ -1,17 +1,13 @@
-import React, {
-  useRef,
-  forwardRef,
-  useEffect,
-  useState,
-  useCallback,
-} from "react";
+import React, { useRef, forwardRef, useEffect, useState } from "react";
 import TagList from "./TagList";
 import styles from "../styles/canvas.module.css";
 
-const Canvas = forwardRef(function ({ height, width }, ref) {
+const Canvas = forwardRef(function (
+  { height, width, handleNewTag, tags, setTags },
+  ref
+) {
   const canvasRef = useRef(null);
   const [start, setStart] = useState({});
-  const [tags, setTags] = useState([]);
   const [isDrawing, setIsDrawing] = useState(false);
 
   useEffect(() => {
@@ -38,17 +34,18 @@ const Canvas = forwardRef(function ({ height, width }, ref) {
   function endRect(e) {
     if (isDrawing) {
       let { x, y } = getMousePos(canvasRef.current, e);
-      setTags([
-        ...tags,
-        {
-          id: tags.length + 1,
-          x: start.x,
-          y: start.y,
-          width: x - start.x,
-          height: y - start.y,
-        },
-      ]);
+      const newTag = {
+        id: tags.length + 1,
+        x: start.x,
+        y: start.y,
+        width: x - start.x,
+        height: y - start.y,
+      };
+      setTags([...tags, newTag]);
       setIsDrawing(false);
+
+      // lift up newly added tag
+      handleNewTag(newTag);
     }
   }
 
@@ -60,14 +57,6 @@ const Canvas = forwardRef(function ({ height, width }, ref) {
 
     // clear everthing from the canvas
     context.clearRect(0, 0, canvas.width, canvas.height);
-
-    // render all tags
-    // tags.forEach((tag) => {
-    //   context.beginPath();
-    //   context.rect(tag.x, tag.y, tag.width, tag.height);
-    //   context.strokeStyle = "blue";
-    //   context.stroke();
-    // });
   }
 
   // moving action

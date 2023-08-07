@@ -1,11 +1,11 @@
+import React, { useRef, useState } from "react";
 import Card from "../components/base/Card";
 import ImageArea from "../components/base/ImageArea";
 import Button from "../components/base/Button";
 
-import { useRef } from "react";
-
 export default function Index() {
   const imgArea = useRef();
+  const [tags, setTags] = useState([]);
 
   const zoomIn = () => {
     imgArea.current.zoomIn();
@@ -27,9 +27,12 @@ export default function Index() {
             onClick={zoomOut}
           />
         </div>
-        <Card>
-          <ImageArea ref={imgArea} />
-        </Card>
+        <div className="flex justify-between gap-x-4">
+          <Card className="w-[calc(100%-400px)]">
+            <ImageArea ref={imgArea} tags={tags} setTags={setTags} />
+          </Card>
+          <div className="tags-content"></div>
+        </div>
       </div>
     </div>
   );

@@ -22,18 +22,6 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
   const [imgWidth, setImgWidth] = useState();
   const [height, setHeight] = useState();
 
-  // tags' list
-  const [tags, setTags] = useState([
-    {
-      id: 1,
-      title: "Garage Area Size (23-5 x 23-5)",
-      xPosition: 108,
-      yPosition: 252,
-      width: 100,
-      height: 300,
-    },
-  ]);
-
   // on first render
   useEffect(() => {
     const container = imgContainerRef.current;
@@ -73,21 +61,38 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
     zoomOut: zoomOut,
   }));
 
+  // newTag
+  const handleNewTag = (tag) => {
+    console.log(tag);
+  };
+
   return (
-    <div className={`${styles["image-area-container"]}`} ref={imgContainerRef}>
-      <Canvas height={height} width={imgWidth} ref={canvasRef} />
-      <img
-        ref={imageRef}
-        src="/images/floor-plan.png"
-        alt="uploaded image will be shown here"
-        draggable="false"
-        className={`${styles.img} p-0 m-0`}
-        width={imgWidth}
-        onLoad={() => {
-          setHeight(imageRef.current.offsetHeight);
-        }}
-      />
-    </div>
+    <>
+      <div
+        className={`${styles["image-area-container"]} ${props.className}`}
+        ref={imgContainerRef}
+      >
+        <Canvas
+          height={height}
+          width={imgWidth}
+          ref={canvasRef}
+          handleNewTag={handleNewTag}
+          tags={props.tags}
+          setTags={props.setTags}
+        />
+        <img
+          ref={imageRef}
+          src="/images/floor-plan.png"
+          alt="uploaded image will be shown here"
+          draggable="false"
+          className={`${styles.img} p-0 m-0`}
+          width={imgWidth}
+          onLoad={() => {
+            setHeight(imageRef.current.offsetHeight);
+          }}
+        />
+      </div>
+    </>
   );
 });
 

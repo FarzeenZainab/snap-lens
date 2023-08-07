@@ -9,7 +9,6 @@ function TagList({ tagList }) {
           <TagItem
             key={tag.id}
             id={tag.id}
-            title={tag.title}
             width={tag.width}
             height={tag.height}
             xPosition={tag.x}

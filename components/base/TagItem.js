@@ -13,9 +13,7 @@ function TagItem({ id, xPosition, yPosition, width, height, title }) {
         width: width,
         height: height,
       }}
-    >
-      <p className={styles.title}>{title ? title : "Tag title goes here"}</p>
-    </div>
+    ></div>
   );
 }
 
