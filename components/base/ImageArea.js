@@ -61,11 +61,6 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
     zoomOut: zoomOut,
   }));
 
-  // newTag
-  const handleNewTag = (tag) => {
-    console.log(tag);
-  };
-
   return (
     <>
       <div
@@ -76,7 +71,7 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
           height={height}
           width={imgWidth}
           ref={canvasRef}
-          handleNewTag={handleNewTag}
+          handleNewTag={props.handleNewTag}
           tags={props.tags}
           setTags={props.setTags}
         />
