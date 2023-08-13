@@ -89,5 +89,12 @@ x, y, right, bottom, width, height
 visual diagram: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect
 
 5. Adding Name on a tag
-- On Mouse up -> show a input field that will take an input from the user as title of the tag and saves it in the object.
-- The tag is later displayed on the tag
+- On Mouse up -> show a input field that will take an input from the user as title of the tag and saves it in the respective object.
+- The title is then displayed on the right sidearea  
+
+- I am thinking to create a global state to check when the user has finished drawing, isDrawing is false. When the user finished drawing and isDrawing is false then we will show the input. Let's call this the edit mode. So, when the user is in the edit mode; he can not create a new tag until it names the current one.
+
+- Using context API to manage state globally
+
+
+

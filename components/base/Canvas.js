@@ -1,15 +1,14 @@
 import React, { useRef, forwardRef, useEffect, useState } from "react";
 import TagList from "./TagList";
 import styles from "../styles/canvas.module.css";
+import { useGlobalTags } from "../../context";
 
-const Canvas = forwardRef(function (
-  { height, width, handleNewTag, tags, setTags },
-  ref
-) {
+const Canvas = forwardRef(function ({ height, width }, ref) {
   const canvasRef = useRef(null);
   const [start, setStart] = useState({});
   const [isDrawing, setIsDrawing] = useState(false);
 
+  const { state: tags, dispatch } = useGlobalTags();
   useEffect(() => {
     const canvas = canvasRef.current;
     canvas.getContext("2d");
@@ -41,11 +40,10 @@ const Canvas = forwardRef(function (
         width: x - start.x,
         height: y - start.y,
       };
-      setTags([...tags, newTag]);
       setIsDrawing(false);
 
-      // lift up newly added tag
-      handleNewTag(newTag);
+      // dispatch reducer
+      dispatch({ type: "ADD_NEW_TAG", payload: newTag });
     }
   }
 
