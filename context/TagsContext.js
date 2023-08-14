@@ -1,11 +1,8 @@
 import { useContext, createContext, useReducer } from "react";
+import { useIsEditing } from "./IsEditing";
 
 // tags initial state
-const initialTagsState = [
-  { id: 1, x: 167, y: 203.79999542236328, width: 184, height: 164 },
-  { id: 2, x: 272, y: 80.79999542236328, width: 122, height: 78 },
-  { id: 3, x: 442, y: 203.79999542236328, width: 81, height: 113 },
-];
+const initialTagsState = [];
 
 // create context
 const TagsContext = createContext();
@@ -15,7 +12,10 @@ const tagsReducer = (state, action) => {
   switch (action.type) {
     // add tag
     case "ADD_NEW_TAG":
+      const { dispatch: setEditingMode } = useIsEditing();
       state.push(action.payload);
+      setEditingMode({ type: true });
+      console.log(state);
 
     // other cases
     default:

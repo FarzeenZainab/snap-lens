@@ -1,7 +1,7 @@
 import React, { useRef, forwardRef, useEffect, useState } from "react";
 import TagList from "./TagList";
 import styles from "../styles/canvas.module.css";
-import { useGlobalTags } from "../../context";
+import { useGlobalTags } from "../../context/TagsContext";
 
 const Canvas = forwardRef(function ({ height, width }, ref) {
   const canvasRef = useRef(null);
@@ -42,8 +42,12 @@ const Canvas = forwardRef(function ({ height, width }, ref) {
       };
       setIsDrawing(false);
 
-      // dispatch reducer
-      dispatch({ type: "ADD_NEW_TAG", payload: newTag });
+      if (newTag.width === 0 || newTag.height === 0) {
+        return;
+      } else {
+        // dispatch reducer
+        dispatch({ type: "ADD_NEW_TAG", payload: newTag });
+      }
     }
   }
 
