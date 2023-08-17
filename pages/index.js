@@ -4,7 +4,6 @@ import ImageArea from "../components/base/ImageArea";
 import Button from "../components/base/Button";
 import TitleInput from "../components/base/TitleInput";
 import TagsTitleList from "../components/base/TagsTitleList";
-
 import { TagsProvider } from "../context/TagsContext";
 import { IsEditingProvider } from "../context/IsEditing";
 
@@ -43,7 +42,7 @@ export default function Index() {
               </Card>
               <div className="tags-content p-4">
                 <TitleInput />
-                {/* <TagsTitleList /> */}
+                <TagsTitleList />
               </div>
             </div>
           </div>

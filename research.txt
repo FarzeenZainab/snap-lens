@@ -96,5 +96,10 @@ visual diagram: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoun
 
 - Using context API to manage state globally
 
+- I am not able to update the state of a context inside another context file. Error: Do not call Hooks inside useEffect(...), useMemo(...), or other built-in Hooks. You can only call Hooks at the top level of your React function.   
 
+- using a different approch to update the state of the context without using reducer function (using useState hook)
+
+- isDrawing state -> when the user is drawing on the canvas
+- isEditing state -> when the user has finished drawing and adding title of the tag 
 
