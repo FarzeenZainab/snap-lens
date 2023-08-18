@@ -10,22 +10,9 @@ function TitleInput() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Create a new tag object with the updated title
-    const updatedTag = {
-      ...tags[tags.length - 1], // Copy the last tag
-      title: title, // Update the title
-    };
-
-    // Update the tags array with the updated tag
-    const updatedTags = [...tags];
-    updatedTags[tags.length - 1] = updatedTag;
-
-    // Update the tags context with the new array
-    setTags(updatedTags);
-
-    // Dispatch the action to update the isEditing state
+    setTags({ type: "UPDATE_TITLE", payload: title });
     dispatch({ type: false });
+    console.log(tags);
   };
 
   const handleInputChange = (e) => {

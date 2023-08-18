@@ -21,8 +21,17 @@ const tagsReducer = (state, action) => {
     // add tag
     case "ADD_NEW_TAG":
       state.push(action.payload);
-      console.log(state);
-    // other cases
+      return state;
+
+    // Update Title
+    case "UPDATE_TITLE":
+      const updatedState = [...state];
+      updatedState[updatedState.length - 1] = {
+        ...updatedState[updatedState.length - 1],
+        title: action.payload,
+      };
+      return updatedState;
+
     default:
       return state;
   }
