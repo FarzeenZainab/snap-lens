@@ -7,7 +7,6 @@ import React, {
 } from "react";
 
 import Canvas from "../base/Canvas";
-
 import styles from "../styles/image-area.module.css";
 
 const ImageArea = forwardRef(function ImageArea(props, ref) {
@@ -67,14 +66,7 @@ const ImageArea = forwardRef(function ImageArea(props, ref) {
         className={`${styles["image-area-container"]} ${props.className}`}
         ref={imgContainerRef}
       >
-        <Canvas
-          height={height}
-          width={imgWidth}
-          ref={canvasRef}
-          handleNewTag={props.handleNewTag}
-          tags={props.tags}
-          setTags={props.setTags}
-        />
+        <Canvas height={height} width={imgWidth} ref={canvasRef} />
         <img
           ref={imageRef}
           src="/images/floor-plan.png"

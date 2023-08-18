@@ -1,14 +1,16 @@
 import React, { useRef, forwardRef, useEffect, useState } from "react";
 import TagList from "./TagList";
 import styles from "../styles/canvas.module.css";
+import { useGlobalTags } from "../../context/TagsContext";
+import { useIsEditing } from "../../context/IsEditing";
 
-const Canvas = forwardRef(function (
-  { height, width, handleNewTag, tags, setTags },
-  ref
-) {
+const Canvas = forwardRef(function ({ height, width }, ref) {
   const canvasRef = useRef(null);
   const [start, setStart] = useState({});
   const [isDrawing, setIsDrawing] = useState(false);
+
+  const { state: tags, dispatch } = useGlobalTags();
+  const { state: isEditing, dispatch: setISEditing } = useIsEditing();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -26,6 +28,9 @@ const Canvas = forwardRef(function (
 
   // starting action
   function startRect(e) {
+    if (isEditing) {
+      return;
+    }
     setIsDrawing(true);
     setStart(getMousePos(canvasRef.current, e));
   }
@@ -41,11 +46,14 @@ const Canvas = forwardRef(function (
         width: x - start.x,
         height: y - start.y,
       };
-      setTags([...tags, newTag]);
       setIsDrawing(false);
 
-      // lift up newly added tag
-      handleNewTag(newTag);
+      if (newTag.width === 0 || newTag.height === 0) {
+        return;
+      } else {
+        setISEditing({ type: true });
+        dispatch({ type: "ADD_NEW_TAG", payload: newTag });
+      }
     }
   }
 
@@ -73,7 +81,6 @@ const Canvas = forwardRef(function (
       context.fill();
     }
   };
-
   // add tag name
 
   // delete tag
@@ -87,7 +94,7 @@ const Canvas = forwardRef(function (
         id="canvas"
         width={width}
         height={height}
-        className={`${styles.canvas}`}
+        className={`${styles.canvas} ${isEditing && "cursor-not-allowed"}`}
         onMouseMove={handleMouseMove}
         onMouseDown={startRect}
         onMouseUp={endRect}
