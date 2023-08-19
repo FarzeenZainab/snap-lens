@@ -1,6 +1,5 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -52,3 +51,10 @@ h1 {
 .tags-content {
   @apply rounded-xl bg-white w-[400px] min-h-[500px];
 }
+.btn-icon {
+  @apply hover:bg-gray-100 rounded-full p-2 w-auto flex items-center justify-center cursor-pointer hover:shadow-sm border border-gray-300;
+}
+.icon {
+  @apply text-lg text-blue-600 m-0;
+}
+@tailwind utilities;

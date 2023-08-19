@@ -1,16 +1,7 @@
 import { useContext, createContext, useReducer } from "react";
 
 // tags initial state
-const initialTagsState = [
-  {
-    height: 187,
-    id: 1,
-    width: 126,
-    x: 184,
-    y: 50.79999542236328,
-    title: "test",
-  },
-];
+const initialTagsState = [];
 
 // create context
 const TagsContext = createContext();
@@ -20,17 +11,22 @@ const tagsReducer = (state, action) => {
   switch (action.type) {
     // add tag
     case "ADD_NEW_TAG":
-      state.push(action.payload);
+      state.unshift(action.payload);
       return state;
 
     // Update Title
     case "UPDATE_TITLE":
       const updatedState = [...state];
-      updatedState[updatedState.length - 1] = {
-        ...updatedState[updatedState.length - 1],
+      updatedState[0] = {
+        ...updatedState[0],
         title: action.payload,
       };
       return updatedState;
+
+    // delete tag
+    case "DELETE_TAG":
+      const updateState = state.filter((tag) => tag.id !== action.payload);
+      return updateState;
 
     default:
       return state;

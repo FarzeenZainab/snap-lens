@@ -26,9 +26,18 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-zoom-in:before {
+.icon-edit:before {
+  content: "\e904";
+}
+.icon-remove:before {
   content: "\e900";
 }
-.icon-zoom-out:before {
+.icon-trash:before {
   content: "\e901";
+}
+.icon-zoom-in:before {
+  content: "\e902";
+}
+.icon-zoom-out:before {
+  content: "\e903";
 }

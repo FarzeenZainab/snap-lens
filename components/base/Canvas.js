@@ -37,6 +37,7 @@ const Canvas = forwardRef(function ({ height, width }, ref) {
 
   // ending action
   function endRect(e) {
+    draw();
     if (isDrawing) {
       let { x, y } = getMousePos(canvasRef.current, e);
       const newTag = {
