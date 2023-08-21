@@ -14,8 +14,13 @@ const tagsReducer = (state, action) => {
       state.unshift(action.payload);
       return state;
 
-    // Update Title
-    case "UPDATE_TITLE":
+    // delete tag
+    case "DELETE_TAG":
+      const updateState = state.filter((tag) => tag.id !== action.payload);
+      return updateState;
+
+    // add title
+    case "ADD_TITLE":
       const updatedState = [...state];
       updatedState[0] = {
         ...updatedState[0],
@@ -23,10 +28,16 @@ const tagsReducer = (state, action) => {
       };
       return updatedState;
 
-    // delete tag
-    case "DELETE_TAG":
-      const updateState = state.filter((tag) => tag.id !== action.payload);
-      return updateState;
+    // edit tag title
+    case "EDIT_TITLE":
+      const tag = state.filter((tag) => {
+        return tag.id === action.tagId;
+      });
+
+      console.log(tag);
+
+    // console.log(action.payload);
+    // console.log(action.tagId);
 
     default:
       return state;

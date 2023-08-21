@@ -1,14 +1,18 @@
 import React from "react";
 import { useGlobalTags } from "../../context/TagsContext";
+import { useIsEditing } from "../../context/IsEditing";
 
 function TagsTitleList() {
   const { state: titlesList, dispatch } = useGlobalTags();
+  const { dispatch: setIsEditing } = useIsEditing();
 
   const handleTagDeletion = (id) => {
     dispatch({ type: "DELETE_TAG", payload: id });
   };
+
   const handleTagEdit = (id) => {
-    dispatch({ type: "DELETE_TAG", payload: id });
+    setIsEditing({ type: true, payload: id, editTagTitle: true });
+    dispatch({ type: "EDIT_TAG", payload: id });
   };
 
   return (

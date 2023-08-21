@@ -10,6 +10,14 @@ const isEditing = createContext();
 const isEditingReducer = (state, action) => {
   switch (action.type) {
     case true: {
+      // if user is editing tag
+      if (action.editTagTitle) {
+        return (state = {
+          isEditing: true,
+          id: action.payload,
+        });
+      }
+
       return (state = true);
     }
     case false: {
