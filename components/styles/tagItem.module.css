@@ -1,9 +1,3 @@
 .tag {
-  /* width-height and position should come from props */
-  /* remove width */
   @apply bg-green-500 bg-opacity-50 absolute z-10 top-[98px] left-[11px] flex items-center justify-center;
-}
-
-.title {
-  @apply text-sm text-center text-black bg-white w-[calc(100%-10px)] p-1 rounded;
 }

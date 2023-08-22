@@ -1,5 +1,5 @@
 .btn {
-  @apply text-white px-8 py-2 text-xl m-1 rounded-md border-2 flex items-center border-green-500 hover:bg-green-500 hover:transition;
+  @apply text-white px-6 py-2 text-sm m-1 rounded-md border-2 flex items-center border-green-500 hover:bg-green-500 hover:transition;
 }
 
 .btn.lg {
@@ -7,5 +7,5 @@
 }
 
 .btn .icon {
-  @apply mr-4;
+  @apply mr-2 text-lg;
 }

@@ -14,19 +14,35 @@ const tagsReducer = (state, action) => {
       state.unshift(action.payload);
       return state;
 
-    // Update Title
-    case "UPDATE_TITLE":
+    // delete tag
+    case "DELETE_TAG": {
+      const updateState = state.filter((tag) => tag.id !== action.payload);
+      return updateState;
+    }
+
+    // add title
+    case "ADD_TITLE": {
       const updatedState = [...state];
       updatedState[0] = {
         ...updatedState[0],
         title: action.payload,
       };
       return updatedState;
+    }
 
-    // delete tag
-    case "DELETE_TAG":
-      const updateState = state.filter((tag) => tag.id !== action.payload);
-      return updateState;
+    // edit tag title
+    case "EDIT_TITLE": {
+      const updatedState = [...state];
+      const itemIndex = updatedState.findIndex(
+        (tag) => tag.id === action.tagId
+      );
+
+      updatedState[itemIndex] = {
+        ...updatedState[itemIndex],
+        title: action.payload,
+      };
+      return updatedState;
+    }
 
     default:
       return state;

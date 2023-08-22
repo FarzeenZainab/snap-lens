@@ -5,14 +5,19 @@ import { useGlobalTags } from "../../context/TagsContext";
 
 function TitleInput() {
   const { state, dispatch } = useIsEditing();
-  const { state: tags, dispatch: setTags } = useGlobalTags();
+  const { dispatch: setTagsTitle } = useGlobalTags();
   const [title, setTitle] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setTags({ type: "UPDATE_TITLE", payload: title });
+
+    if (state.isEditing && state.id) {
+      setTagsTitle({ type: "EDIT_TITLE", payload: title, tagId: state.id });
+    } else {
+      setTagsTitle({ type: "ADD_TITLE", payload: title });
+    }
+
     dispatch({ type: false });
-    console.log(tags);
   };
 
   const handleInputChange = (e) => {
@@ -29,7 +34,7 @@ function TitleInput() {
           onChange={handleInputChange}
         />
         <button className={styles.button} type="submit">
-          Save
+          Add Tag
         </button>
       </form>
     </div>
