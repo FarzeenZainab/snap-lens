@@ -34,7 +34,7 @@ function TitleInput() {
           onChange={handleInputChange}
         />
         <button className={styles.button} type="submit">
-          Save
+          Add Tag
         </button>
       </form>
     </div>

@@ -4,7 +4,7 @@ import { useIsEditing } from "../../context/IsEditing";
 
 function TagsTitleList() {
   const { state: titlesList, dispatch } = useGlobalTags();
-  const { dispatch: setIsEditing } = useIsEditing();
+  const { state: isEditing, dispatch: setIsEditing } = useIsEditing();
 
   const handleTagDeletion = (id) => {
     dispatch({ type: "DELETE_TAG", payload: id });
@@ -21,22 +21,28 @@ function TagsTitleList() {
       {titlesList.length >= 1 && (
         <ul className="tags-content-list">
           {titlesList.map((listItem) => {
+            if (!listItem.title) {
+              return null;
+            }
+
             return (
               <li
                 className="bg-gray-50 p-2.5 mt-4 rounded-md border border-gray-200 flex items-center justify-between"
                 key={listItem.id}
                 id={listItem.id}
               >
-                <span className="w-[90%]">{listItem.title}</span>
+                <span className="w-[90%] text-sm">{listItem.title}</span>
 
                 <div
-                  className="btn-icon mr-2.5"
+                  className={`${
+                    isEditing && "action-disabled"
+                  } btn-icon mr-2.5`}
                   onClick={handleTagEdit.bind(null, listItem.id)}
                 >
                   <i className="icon icon-edit"></i>
                 </div>
                 <div
-                  className="btn-icon"
+                  className={`${isEditing && "action-disabled"} btn-icon`}
                   onClick={handleTagDeletion.bind(null, listItem.id)}
                 >
                   <i className="icon icon-remove"></i>
@@ -56,7 +62,7 @@ function TagsTitleList() {
               className="w-full"
             />
           </div>
-          <h2 className="text-center text-gray-700 text-xl leading-[18px]">
+          <h2 className="text-center text-gray-700 text-sm">
             To get started, just click and drag your mouse over the parts you
             want to highlight on the image.
           </h2>

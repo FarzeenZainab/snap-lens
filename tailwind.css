@@ -21,6 +21,7 @@
 }
 body {
   background-color: #36384d;
+  font-family: "DM Sans", sans-serif;
 }
 
 /* Scrollbar */
@@ -56,5 +57,8 @@ h1 {
 }
 .icon {
   @apply text-lg text-blue-600 m-0;
+}
+.action-disabled {
+  @apply pointer-events-none opacity-30;
 }
 @tailwind utilities;
