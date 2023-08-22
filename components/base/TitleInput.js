@@ -8,8 +8,6 @@ function TitleInput() {
   const { dispatch: setTagsTitle } = useGlobalTags();
   const [title, setTitle] = useState();
 
-  // console.log(state);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -18,6 +16,7 @@ function TitleInput() {
     } else {
       setTagsTitle({ type: "ADD_TITLE", payload: title });
     }
+
     dispatch({ type: false });
   };
 
