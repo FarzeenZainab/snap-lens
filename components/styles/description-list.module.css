@@ -1,0 +1,7 @@
+.rightside {
+  @apply relative h-[100%];
+}
+
+.noRecordFound {
+  @apply flex items-center flex-col p-2 h-full justify-center bg-gray-100 rounded-md;
+}

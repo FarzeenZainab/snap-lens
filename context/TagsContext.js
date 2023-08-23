@@ -20,18 +20,18 @@ const tagsReducer = (state, action) => {
       return updateState;
     }
 
-    // add title
-    case "ADD_TITLE": {
+    // add description
+    case "ADD_DESCRIPTION": {
       const updatedState = [...state];
       updatedState[0] = {
         ...updatedState[0],
-        title: action.payload,
+        description: action.payload,
       };
       return updatedState;
     }
 
-    // edit tag title
-    case "EDIT_TITLE": {
+    // edit tag description
+    case "EDIT_DESCRIPTION": {
       const updatedState = [...state];
       const itemIndex = updatedState.findIndex(
         (tag) => tag.id === action.tagId
@@ -39,7 +39,7 @@ const tagsReducer = (state, action) => {
 
       updatedState[itemIndex] = {
         ...updatedState[itemIndex],
-        title: action.payload,
+        description: action.payload,
       };
       return updatedState;
     }

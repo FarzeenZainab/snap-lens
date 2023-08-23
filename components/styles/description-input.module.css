@@ -1,0 +1,20 @@
+.formContainer {
+  @apply bg-gray-100 p-2 rounded;
+}
+.header {
+  @apply flex justify-between items-center mb-4 border-b pb-2;
+}
+.form {
+  @apply flex items-center gap-2;
+}
+.formInput {
+  @apply w-full appearance-none border rounded py-2 px-3 text-gray-700 h-[42px] leading-tight text-sm;
+}
+
+.formInput:focus,
+.button:focus {
+  @apply outline-none shadow-none;
+}
+.button {
+  @apply bg-blue-500 hover:bg-blue-700 text-white py-2 px-4  rounded text-sm h-[42px] w-[65px];
+}

@@ -11,7 +11,7 @@ const isEditingReducer = (state, action) => {
   switch (action.type) {
     case true: {
       // if user is editing tag
-      if (action.editTagTitle) {
+      if (action.editTagDescription) {
         return (state = {
           isEditing: true,
           id: action.payload,

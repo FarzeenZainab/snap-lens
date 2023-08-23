@@ -1,9 +1,10 @@
 import React from "react";
 import { useGlobalTags } from "../../context/TagsContext";
 import { useIsEditing } from "../../context/IsEditing";
+import styles from "../styles/description-list.module.css";
 
-function TagsTitleList() {
-  const { state: titlesList, dispatch } = useGlobalTags();
+function TagsDescriptionList() {
+  const { state: descriptionsList, dispatch } = useGlobalTags();
   const { state: isEditing, dispatch: setIsEditing } = useIsEditing();
 
   const handleTagDeletion = (id) => {
@@ -11,27 +12,32 @@ function TagsTitleList() {
   };
 
   const handleTagEdit = (id) => {
-    setIsEditing({ type: true, payload: id, editTagTitle: true });
+    setIsEditing({ type: true, payload: id, editTagDescription: true });
     dispatch({ type: "EDIT_TAG", payload: id });
   };
 
   return (
-    <>
-      {/* <h1 className="text-2xl uppercase font-700">Tags:</h1> */}
-      {titlesList.length >= 1 && (
+    <div className={styles.rightside}>
+      {descriptionsList.length >= 1 && (
         <ul className="tags-content-list">
-          {titlesList.map((listItem) => {
-            if (!listItem.title) {
-              return null;
-            }
-
+          {descriptionsList.map((listItem) => {
             return (
               <li
                 className="bg-gray-50 p-2.5 mt-4 rounded-md border border-gray-200 flex items-center justify-between"
                 key={listItem.id}
                 id={listItem.id}
               >
-                <span className="w-[90%] text-sm">{listItem.title}</span>
+                {listItem.description && (
+                  <span className="w-[90%] text-sm">
+                    {listItem.description}
+                  </span>
+                )}
+
+                {!listItem.description && (
+                  <span className="w-[90%] text-sm text-gray-300">
+                    Tag's description...
+                  </span>
+                )}
 
                 <div
                   className={`${
@@ -53,8 +59,8 @@ function TagsTitleList() {
         </ul>
       )}
 
-      {titlesList.length === 0 && (
-        <div className="flex items-center flex-col p-2">
+      {descriptionsList.length === 0 && (
+        <div className={styles.noRecordFound}>
           <div className="w-[100px] mb-2">
             <img
               src="/images/draw.png"
@@ -63,13 +69,13 @@ function TagsTitleList() {
             />
           </div>
           <h2 className="text-center text-gray-700 text-sm">
-            To get started, just click and drag your mouse over the parts you
-            want to highlight on the image.
+            To get started, just click -&gt; drag -&gt; move -&gt; leave your
+            mouse over the parts you want to highlight on the image.
           </h2>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
-export default TagsTitleList;
+export default TagsDescriptionList;
