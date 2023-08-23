@@ -1,6 +1,6 @@
 .image-area-container {
   /* we have to make the height responsive to fix the height issue */
-  @apply relative h-[80vh] overflow-y-auto -mr-6 pr-6;
+  /* @apply relative h-[80vh] overflow-y-auto -mr-6 pr-6; */
 }
 .img {
   @apply max-w-none;

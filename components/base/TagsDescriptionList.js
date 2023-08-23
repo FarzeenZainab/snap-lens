@@ -1,6 +1,7 @@
 import React from "react";
 import { useGlobalTags } from "../../context/TagsContext";
 import { useIsEditing } from "../../context/IsEditing";
+import styles from "../styles/description-list.module.css";
 
 function TagsDescriptionList() {
   const { state: descriptionsList, dispatch } = useGlobalTags();
@@ -16,15 +17,10 @@ function TagsDescriptionList() {
   };
 
   return (
-    <>
-      {/* <h1 className="text-2xl uppercase font-700">Tags:</h1> */}
+    <div className={styles.rightside}>
       {descriptionsList.length >= 1 && (
         <ul className="tags-content-list">
           {descriptionsList.map((listItem) => {
-            // if (!listItem.description) {
-            //   return null;
-            // }
-
             return (
               <li
                 className="bg-gray-50 p-2.5 mt-4 rounded-md border border-gray-200 flex items-center justify-between"
@@ -64,7 +60,7 @@ function TagsDescriptionList() {
       )}
 
       {descriptionsList.length === 0 && (
-        <div className="flex items-center flex-col p-2">
+        <div className={styles.noRecordFound}>
           <div className="w-[100px] mb-2">
             <img
               src="/images/draw.png"
@@ -73,12 +69,12 @@ function TagsDescriptionList() {
             />
           </div>
           <h2 className="text-center text-gray-700 text-sm">
-            To get started, just click and drag your mouse over the parts you
-            want to highlight on the image.
+            To get started, just click -&gt; drag -&gt; move -&gt; leave your
+            mouse over the parts you want to highlight on the image.
           </h2>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

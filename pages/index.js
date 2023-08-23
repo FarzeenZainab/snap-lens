@@ -41,8 +41,10 @@ export default function Index() {
                 <ImageArea ref={imgArea} />
               </Card>
               <div className="tags-content p-4">
-                <DescriptionInput />
-                <TagsDescriptionList />
+                <div className="relative h-[80vh] overflow-y-auto -mr-4 pr-4">
+                  <DescriptionInput />
+                  <TagsDescriptionList />
+                </div>
               </div>
             </div>
           </div>

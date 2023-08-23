@@ -50,7 +50,7 @@ h1 {
   @apply max-w-full;
 }
 .tags-content {
-  @apply rounded-xl bg-white w-[400px] min-h-[500px];
+  @apply rounded-xl bg-white w-[400px];
 }
 .btn-icon {
   @apply hover:bg-gray-100 rounded-full p-2 w-auto flex items-center justify-center cursor-pointer hover:shadow-sm border border-gray-300;
