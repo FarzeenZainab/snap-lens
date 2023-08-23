@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 import Card from "../components/base/Card";
 import ImageArea from "../components/base/ImageArea";
 import Button from "../components/base/Button";
-import TitleInput from "../components/base/TitleInput";
-import TagsTitleList from "../components/base/TagsTitleList";
+import DescriptionInput from "../components/base/DescriptionInput";
+import TagsDescriptionList from "../components/base/TagsDescriptionList";
 import { TagsProvider } from "../context/TagsContext";
 import { IsEditingProvider } from "../context/IsEditing";
 
@@ -41,8 +41,8 @@ export default function Index() {
                 <ImageArea ref={imgArea} />
               </Card>
               <div className="tags-content p-4">
-                <TitleInput />
-                <TagsTitleList />
+                <DescriptionInput />
+                <TagsDescriptionList />
               </div>
             </div>
           </div>

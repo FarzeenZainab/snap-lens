@@ -25,7 +25,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.icon-close:before {
+  content: "\e905";
+}
 .icon-edit:before {
   content: "\e904";
 }

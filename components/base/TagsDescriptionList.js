@@ -2,8 +2,8 @@ import React from "react";
 import { useGlobalTags } from "../../context/TagsContext";
 import { useIsEditing } from "../../context/IsEditing";
 
-function TagsTitleList() {
-  const { state: titlesList, dispatch } = useGlobalTags();
+function TagsDescriptionList() {
+  const { state: descriptionsList, dispatch } = useGlobalTags();
   const { state: isEditing, dispatch: setIsEditing } = useIsEditing();
 
   const handleTagDeletion = (id) => {
@@ -11,19 +11,19 @@ function TagsTitleList() {
   };
 
   const handleTagEdit = (id) => {
-    setIsEditing({ type: true, payload: id, editTagTitle: true });
+    setIsEditing({ type: true, payload: id, editTagDescription: true });
     dispatch({ type: "EDIT_TAG", payload: id });
   };
 
   return (
     <>
       {/* <h1 className="text-2xl uppercase font-700">Tags:</h1> */}
-      {titlesList.length >= 1 && (
+      {descriptionsList.length >= 1 && (
         <ul className="tags-content-list">
-          {titlesList.map((listItem) => {
-            if (!listItem.title) {
-              return null;
-            }
+          {descriptionsList.map((listItem) => {
+            // if (!listItem.description) {
+            //   return null;
+            // }
 
             return (
               <li
@@ -31,7 +31,17 @@ function TagsTitleList() {
                 key={listItem.id}
                 id={listItem.id}
               >
-                <span className="w-[90%] text-sm">{listItem.title}</span>
+                {listItem.description && (
+                  <span className="w-[90%] text-sm">
+                    {listItem.description}
+                  </span>
+                )}
+
+                {!listItem.description && (
+                  <span className="w-[90%] text-sm text-gray-300">
+                    Tag's description...
+                  </span>
+                )}
 
                 <div
                   className={`${
@@ -53,7 +63,7 @@ function TagsTitleList() {
         </ul>
       )}
 
-      {titlesList.length === 0 && (
+      {descriptionsList.length === 0 && (
         <div className="flex items-center flex-col p-2">
           <div className="w-[100px] mb-2">
             <img
@@ -72,4 +82,4 @@ function TagsTitleList() {
   );
 }
 
-export default TagsTitleList;
+export default TagsDescriptionList;
