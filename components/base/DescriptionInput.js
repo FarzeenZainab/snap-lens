@@ -5,22 +5,23 @@ import { useGlobalTags } from "../../context/TagsContext";
 
 function DescriptionInput() {
   const { state, dispatch } = useIsEditing();
-  const { dispatch: setTagsDescription } = useGlobalTags();
+  const { state: tags, dispatch: setTag } = useGlobalTags();
   const [description, setDescription] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (state.isEditing && state.id) {
-      setTagsDescription({
-        type: "EDIT_TITLE",
+      setTag({
+        type: "EDIT_DESCRIPTION",
         payload: description,
         tagId: state.id,
       });
     } else {
-      setTagsDescription({ type: "ADD_TITLE", payload: description });
+      setTag({ type: "ADD_DESCRIPTION", payload: description });
     }
 
+    setDescription("");
     dispatch({ type: false });
   };
 
@@ -28,11 +29,16 @@ function DescriptionInput() {
     setDescription(e.target.value);
   };
 
+  const handleCancel = () => {
+    // setTag({ type: "DELETE_TAG", payload: tags[0].id });
+    dispatch({ type: false });
+  };
+
   return state ? (
     <div className={styles.formContainer}>
       <div className={`${styles.header}`}>
         <h2 className="font-medium text-lg">Tag's Description</h2>
-        <div className={`btn-icon`}>
+        <div className={`btn-icon`} onClick={handleCancel}>
           <i className="icon icon-close text-gray-400"></i>
         </div>
       </div>

@@ -21,7 +21,7 @@ const tagsReducer = (state, action) => {
     }
 
     // add description
-    case "ADD_TITLE": {
+    case "ADD_DESCRIPTION": {
       const updatedState = [...state];
       updatedState[0] = {
         ...updatedState[0],
@@ -31,7 +31,7 @@ const tagsReducer = (state, action) => {
     }
 
     // edit tag description
-    case "EDIT_TITLE": {
+    case "EDIT_DESCRIPTION": {
       const updatedState = [...state];
       const itemIndex = updatedState.findIndex(
         (tag) => tag.id === action.tagId
