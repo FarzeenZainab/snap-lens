@@ -14,7 +14,7 @@ SnapLens is an interactive JavaScript project built with Next.js that allows use
 Clone the repository
 
 ```bash
-git clone https://github.com/your-username/snaplens.git
+git clone https://github.com/FarzeenZainab/snaplens.git
 ```
 
 ### Navigate the project
