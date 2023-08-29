@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./../styles/tagItem.module.css";
 
-function TagItem({ id, xPosition, yPosition, width, height, description }) {
+function TagItem({ id, xPosition, yPosition, width, height }) {
   return (
     <div
       className={styles.tag}

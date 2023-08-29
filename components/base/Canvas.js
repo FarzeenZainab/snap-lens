@@ -82,9 +82,6 @@ const Canvas = forwardRef(function ({ height, width }, ref) {
       context.fill();
     }
   };
-  // add tag name
-
-  // delete tag
 
   return (
     <>

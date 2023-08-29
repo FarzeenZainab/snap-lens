@@ -44,6 +44,36 @@ const tagsReducer = (state, action) => {
       return updatedState;
     }
 
+    // Zoom in
+    case "ZOOM_IN": {
+      const updatedState = state.map((tag) => {
+        return {
+          ...tag,
+          x: tag.x * action.scaleFactor,
+          y: tag.y * action.scaleFactor,
+          width: tag.width * action.scaleFactor,
+          height: tag.height * action.scaleFactor,
+        };
+      });
+
+      return updatedState;
+    }
+
+    // Zoom out
+    case "ZOOM_OUT": {
+      const updatedState = state.map((tag) => {
+        return {
+          ...tag,
+          x: tag.x / action.scaleFactor,
+          y: tag.y / action.scaleFactor,
+          width: tag.width / action.scaleFactor,
+          height: tag.height / action.scaleFactor,
+        };
+      });
+
+      return updatedState;
+    }
+
     default:
       return state;
   }

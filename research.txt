@@ -103,3 +103,14 @@ visual diagram: https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoun
 - isDrawing state -> when the user is drawing on the canvas
 - isEditing state -> when the user has finished drawing and adding description of the tag 
 
+6. Zoom in & out tags as well?
+- Lets try adding the zoom factor to the width and height of the tag (not working)
+- We have to change the pixels values that we are storing inside our tag object into percentage (not working)
+
+- Approach 2:
+  - Calculate Scale factor
+  - Repositioning
+  - Resizing
+
+- Mistake: Zoom in and out was working but was not pixel perfect...
+- Reason -> Because I was using addition and subtraction to zoom in and out the image and canvas and * & / to zoom in-out the tags. This results in slightly miscalculated x, y, w, h. Now I am only using * and / to Zoom in and out
