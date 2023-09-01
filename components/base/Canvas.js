@@ -77,8 +77,7 @@ const Canvas = forwardRef(function ({ height, width }, ref) {
       const context = canvas.getContext("2d");
       context.beginPath();
       context.rect(start.x, start.y, x - start.x, y - start.y);
-      context.strokeStyle = "red";
-      context.stroke();
+      context.fillStyle = "rgb(54, 217, 114, 0.5)";
       context.fill();
     }
   };
