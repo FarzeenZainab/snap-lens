@@ -5,10 +5,10 @@ SnapLens is an interactive JavaScript project built with Next.js that allows use
 ## Features
 
 - Image Upload: Users can upload images from their local machine. (Coming Soon)
-- Zoom Functionality: Users can zoom in or zoom out on the uploaded image to view details or get an overview.
 - Tag Creation: Users can create tags on specific areas of the image using their mouse.
 - Visual Highlighting: When the user releases the mouse, the application highlights the tagged area and creates a box on the screen where the user dragged the mouse.
-
+- Zoom Functionality: Users can zoom in or zoom out on the uploaded image to view details or get an overview.
+  
 ### Installation
 
 Clone the repository
