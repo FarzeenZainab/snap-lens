@@ -39,13 +39,17 @@ npm run dev
 Open your web browser and visit http://localhost:3000 to access SnapLens.
 
 ## Usage
+1. You will see an interface upon opening SnapLens in a web browser. The left side of the interface has an image on which you can create tags. On the right side of the interface you can view all the tags created.
+2. To create a tag, click and drag the mouse on the image to define the area of interest.
+3. Release the mouse to highlight and create a box around the tagged area.
+4. You can then add the tag's description in the box appearing in the right column of the page. 
+5. Repeat the process to create additional tags as needed.
+6. You can edit and delete tags.
+7. To zoom in or out, use the provided zoom controls
 
-1. Upon opening SnapLens in a web browser, you will see an interface with an "Upload Image" button. (Coming Soon)
-2. Click on the "Upload Image" button to select an image file from your local machine.
-3. After uploading the image, it will be displayed on the screen.
-4. To zoom in or out, use the provided zoom controls or keyboard shortcuts.
-5. To create a tag, click and drag the mouse on the image to define the area of interest.
-6. Release the mouse to highlight and create a box around the tagged area.
-7. You can then add the tag's description in the box appearing in the right column of the page. 
-8. Repeat the process to create additional tags as needed.
-   
+## Coming in next version:
+
+1. User can upload their own images
+2. Zoom in and out using keyboard shortcuts.
+3. The user can create a sharable link
+4. UI improvements for better UX
