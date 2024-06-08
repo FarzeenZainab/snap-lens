@@ -1,4 +1,4 @@
-# SnapLens
+# SnapLens [![Netlify Status](https://api.netlify.com/api/v1/badges/cd382b3e-5a19-4df4-8825-8d51b8f83c96/deploy-status)](https://app.netlify.com/sites/snaplens/deploys)
 SnapLens is an interactive JavaScript project built with Next.js that allows users to upload and manipulate images by zooming in and out, as well as creating tags on specific areas of the image. The project provides an intuitive interface for users to explore and annotate images with ease.
 
 **Demo: https://snaplens.netlify.app/**
